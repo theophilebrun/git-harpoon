@@ -7,7 +7,7 @@ fi
 
 if [ -z "$1" ]; then
   echo "Error: no parameter specified for git diff."
-  echo "Usage: $0 <commit/range>"
+  echo "Usage: $(basename $0) <commit/range>"
   exit 1
 fi
 

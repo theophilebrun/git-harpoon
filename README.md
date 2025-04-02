@@ -9,11 +9,26 @@ This script updates the Harpoon project file with a list of files modified in th
 
 ## Installation
 
-1. Clone or download this script to your desired directory.
-2. Make the script executable:
+Run the following commands to install the script:
 
 ```bash
-chmod +x <script_name>.sh
+git clone https://github.com/theophilebrun/git-harpoon.git
+cd git-harpoon
+chmod +x update-harpoon.sh
+```
+
+(Optional) Add an alias to your .bashrc or .zshrc for easier execution
+
+For .bashrc users
+```bash
+echo "alias gdhp='bash $(pwd)/update-harpoon.sh'" >> ~/.bashrc
+source ~/.bashrc
+```
+
+For .zshrc users
+```bash
+echo "alias gdhp='bash $(pwd)/update-harpoon.sh'" >> ~/.zshrc
+source ~/.zshrc
 ```
 
 ## Usage

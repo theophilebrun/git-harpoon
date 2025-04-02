@@ -1,9 +1,12 @@
 # Git Harpoon File Update Script
 
+[ThePrimeagen/harpoon](https://github.com/ThePrimeagen/harpoon)
+
 This script updates the Harpoon project file with a list of files modified in the specified Git commits on the current branch. It ensures that the files are added with their positions (`col: 0`, `row: 1`) as required by the Harpoon format.
 
 ## Requirements
 
+- **harpoon**: The neovim plugin to manage files in a Git repostory.
 - **git**: The script requires that you have a Git repository in the current directory.
 - **jq**: The script uses `jq` to manipulate the `harpoon.json` file.
 

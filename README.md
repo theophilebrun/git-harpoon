@@ -6,7 +6,7 @@ This script updates the Harpoon project file with a list of files modified in th
 
 ## Requirements
 
-- **harpoon**: The neovim plugin to manage files in a Git repostory.
+- **harpoon 1**: The neovim plugin to manage files in a Git repostory.
 - **git**: The script requires that you have a Git repository in the current directory.
 - **jq**: The script uses `jq` to manipulate the `harpoon.json` file.
 

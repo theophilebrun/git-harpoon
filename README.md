@@ -1,6 +1,6 @@
 # Git Harpoon File Update Script
 
-[ThePrimeagen/harpoon](https://github.com/ThePrimeagen/harpoon)
+[ThePrimeagen/harpoon](https://github.com/ThePrimeagen/harpoon/tree/harpoon2)
 
 This script updates the Harpoon project file with a list of files modified in the specified Git commits on the current branch. It ensures that the files are added with their positions (`col: 0`, `row: 1`) as required by the Harpoon format.
 

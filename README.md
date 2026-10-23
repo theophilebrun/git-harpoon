@@ -6,9 +6,9 @@ This script updates the Harpoon project file with a list of files modified in th
 
 ## Requirements
 
-- **harpoon 1**: The neovim plugin to manage files in a Git repostory.
+- **harpoon 2**: The neovim plugin to manage files in a Git repostory.
 - **git**: The script requires that you have a Git repository in the current directory.
-- **jq**: The script uses `jq` to manipulate the `harpoon.json` file.
+- **jq**: The script uses `jq` to manipulate the Harpoon data file.
 
 ## Installation
 
@@ -51,7 +51,7 @@ To update the Harpoon file with modified files from the last 5 commits:
 ./<script_name>.sh HEAD~5..HEAD
 ```
 
-This will add the modified files from the specified commit range into the current project's section in the `harpoon.json` file with `col: 0` and `row: 1` for each file.
+This will add the modified files from the specified commit range into the current project's Harpoon data file with `col: 0` and `row: 1` for each file.
 
 ### Example of Harpoon JSON Update:
 
@@ -61,45 +61,31 @@ If the following files are modified:
 - `templates/Admin/Hospital/createEditeHospital.html.twig`
 - `translations/Admin/messages.fr.yml`
 
-The script will update the `harpoon.json` file in the format:
+The script will update the project's Harpoon data file, `~/.local/share/nvim/harpoon/<sha256 of the project path>.json`, in the format:
 
 ```json
 {
-  "projects": {
-    "/path/to/your/project": {
-      "mark": {
-        "marks": [
-          {"col": 0, "row": 1, "filename": "file1"},
-          {"col": 0, "row": 1, "filename": "file2"},
-          {"col": 0, "row": 1, "filename": "file3"}
-        ]
-      },
-      "term": {"cmds": []}
-    }
-  },
-  "global_settings": {
-    "mark_branch": false,
-    "save_on_toggle": false,
-    "tabline": false,
-    "excluded_filetypes": ["harpoon"],
-    "save_on_change": true,
-    "tabline_suffix": "   ",
-    "enter_on_sendcmd": false,
-    "tabline_prefix": "   ",
-    "tmux_autoclose_windows": false
+  "/path/to/your/project": {
+    "__harpoon_files": [
+      "{\"value\":\"src/Form/HospitalType.php\",\"context\":{\"col\":0,\"row\":1}}",
+      "{\"value\":\"templates/Admin/Hospital/createEditeHospital.html.twig\",\"context\":{\"col\":0,\"row\":1}}",
+      "{\"value\":\"translations/Admin/messages.fr.yml\",\"context\":{\"col\":0,\"row\":1}}"
+    ]
   }
 }
 ```
 
 ### Notes:
 
-- The script uses the current directory as the project path for the Harpoon JSON file update.
+- The script uses the current directory as the project path for the Harpoon data file update. The file is created if it does not exist, and the other lists it contains are kept.
 
-- The modified files are added under the key `mark.marks` with the format:
+- The modified files replace the `__harpoon_files` list. Each item is a JSON-encoded string with the format:
 
 ```json
-{ "col": 0, "row": 1, "filename": "<modified_file_path>" }
+{ "value": "<modified_file_path>", "context": { "col": 0, "row": 1 } }
 ```
+
+- Harpoon keeps its lists in memory: close Neovim before running the script, or restart it afterwards, otherwise your changes may be overwritten.
 
 ## Troubleshooting
 
